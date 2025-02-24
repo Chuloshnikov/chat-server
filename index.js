@@ -1,11 +1,15 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { DATABASE_URI, ORIGIN, PORT } from "./config/env.js";
+import { ORIGIN, PORT } from "./config/env.js";
 import connectToDatabase from "./database/mongodb.js";
+import authRouter from "./routes/AuthRoutes.js";
 
 
 const app = express();
+const port = PORT || 8081;
+
+
 app.use(
     cors({
         origin: [ORIGIN],
@@ -19,9 +23,10 @@ app.use(cookieParser());
 
 
 
+//routes
+app.use("api/v1/auth", authRouter);
 
-const port = PORT || 8081;
-const databaseUrl = DATABASE_URI;
+
 
 app.listen(port, async () => {
     console.log(`Server running on http://localhost:${port}`);
