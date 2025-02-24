@@ -16,7 +16,7 @@ export const signUp = async (req, res, next) => {
             return res.status(400).send("Email and Password is required");
         };
 
-        const user = await User.create({ email, password});
+        const user = await User.create({ email, password });
         res.cookie("jwt", createToken(email, user.id), {
             maxAge,
             secure: true,
@@ -27,9 +27,10 @@ export const signUp = async (req, res, next) => {
             id: user.id,
             email: user.email,
             profileSetup: user.profileSetup,
-        }})
+        }});
     } catch (error) {
         console.log({ error });
         return res.status(500).send("Internal server error");
     }
 }
+
