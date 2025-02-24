@@ -1,7 +1,9 @@
+import pkg from 'jsonwebtoken'
 import { JWT_KEY } from "../config/env.js";
 import User from "../models/UserModel.js";
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
+const { sign } = pkg;
 
 const createToken = (email, userId) => {
     return sign({ email, userId }, JWT_KEY, { expiresIn: maxAge })
@@ -26,7 +28,7 @@ export const signUp = async (req, res, next) => {
             email: user.email,
             profileSetup: user.profileSetup,
         }})
-    } catch {
+    } catch (error) {
         console.log({ error });
         return res.status(500).send("Internal server error");
     }

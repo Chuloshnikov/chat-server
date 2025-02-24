@@ -24,7 +24,7 @@ app.use(cookieParser());
 
 
 //routes
-app.use("api/v1/auth", authRouter);
+app.use("/api/v1/auth", authRouter);
 
 
 
@@ -33,3 +33,5 @@ app.listen(port, async () => {
 
     await connectToDatabase();
 });
+
+export default app;
