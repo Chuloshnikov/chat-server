@@ -1,5 +1,5 @@
-import { JWT_KEY } from "../config/env";
-import User from "../models/UserModel";
+import { JWT_KEY } from "../config/env.js";
+import User from "../models/UserModel.js";
 
 const maxAge = 3 * 24 * 60 * 60 * 1000;
 
@@ -7,7 +7,7 @@ const createToken = (email, userId) => {
     return sign({ email, userId }, JWT_KEY, { expiresIn: maxAge })
 };
 
-export const signup = async (req, res, next) => {
+export const signUp = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         if (!email || !password) {
