@@ -20,6 +20,8 @@ app.use(
     })
   );
 
+app.use("/uploads/profiles", express.static("uploads/profiles"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
