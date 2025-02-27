@@ -44,7 +44,7 @@ export const signIn = async (req, res, next) => {
             return res.status(400).send("Email and Password is required");
         };
 
-        const user = await User.create({ email, password });
+        const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).send("User with this email is not found");
         };
