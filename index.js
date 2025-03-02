@@ -6,6 +6,7 @@ import connectToDatabase from "./database/mongodb.js";
 import authRouter from "./routes/AuthRoutes.js";
 import errorMiddleware from './middlewares/ErrorMiddleware.js';
 import contactsRouter from "./routes/ContactRoutes.js";
+import setupSocket from "./socket.js";
 
 
 const app = express();
@@ -39,10 +40,12 @@ app.get('/', (req, res) => {
     res.send('Welcome to Obscura chat api!');
 });
 
-app.listen(port, async () => {
+const server = app.listen(port, async () => {
     console.log(`Server running on http://localhost:${port}`);
 
     await connectToDatabase();
 });
+
+setupSocket(server);
 
 export default app;
