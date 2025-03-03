@@ -20,7 +20,12 @@ const setupSocket = (server) => {
                 break;
             }
         }
-    }
+    };
+
+    const sendMessage = async (message) => {
+        const senderSocketId = userSocketMap.get(message.sender);
+        const recipientSocketId = userSocketMap.get(message.recipient);
+    };
 
     io.on("connection", (socket) => {
         const userId = socket.handshake.query.userId;
@@ -32,7 +37,7 @@ const setupSocket = (server) => {
             console.log("User ID not provided during connection.");
         }
 
-
+        socket.on("sendMessage", sendMessage);
         socket.on("disconnect", () => disconnect(socket));
     });
 };
