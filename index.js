@@ -7,6 +7,7 @@ import authRouter from "./routes/AuthRoutes.js";
 import errorMiddleware from './middlewares/ErrorMiddleware.js';
 import contactsRouter from "./routes/ContactRoutes.js";
 import setupSocket from "./socket.js";
+import messagesRoutes from "./routes/MessagesRoutes.js";
 
 
 const app = express();
@@ -33,6 +34,7 @@ app.use(cookieParser());
 //routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/contacts", contactsRouter);
+app.use("/api/v1/messages", messagesRoutes);
 
 app.use(errorMiddleware);
 
