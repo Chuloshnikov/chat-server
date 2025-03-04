@@ -3,9 +3,13 @@ import User from "../models/UserModel.js";
 
 export const searchContacts = async (req, res, next) => {
     try {
-      const { searchTerm } = req.body;
+    const { searchTerm } = req.body;
 
-      const sanitizedSearchTerm = searchTerm.replace(
+    if (!searchTerm) {
+        return res.status(400).send("searchTerm is required");
+    }
+
+    const sanitizedSearchTerm = searchTerm.replace(
         /[.*+?^${}()|[\]\\]/g, 
         "\\$&"
     );
