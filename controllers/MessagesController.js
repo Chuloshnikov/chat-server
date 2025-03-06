@@ -37,7 +37,8 @@ export const uploadFile = async (req, res, next) => {
         mkdirSync(fileDir, { recursive: true });
 
         renameSync(req.file.path, fileName);
-    return res.status(200).json({ messages });
+
+    return res.status(200).json({ filePath: fileName});
     } catch (error) {
         console.log({ error });
         return res.status(500).send("Internal server error");
