@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
 },  { timestamps: true });
 
 
-//password incryption
+//password encryption
 userSchema.pre("save", async function(next){
     const salt = await genSalt();
     this.password = await hash(this.password, salt);
